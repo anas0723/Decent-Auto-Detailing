@@ -42,13 +42,41 @@ const timeSlots = [
   '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'
 ];
 
+interface VehicleInfo {
+  make: string;
+  model: string;
+  year: string;
+  color: string;
+}
+
+interface Utilities {
+  hasWater: boolean;
+  hasElectricity: boolean;
+  hasCoveredArea: boolean;
+}
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  date: Date | undefined;
+  time: string;
+  vehicleType: string;
+  vehicle: VehicleInfo;
+  address: string;
+  notes: string;
+  utilities: Utilities;
+  issues: string[];
+}
+
 const BookingForm = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
     service: '',
-    date: undefined as Date | undefined,
+    date: undefined,
     time: '',
     vehicleType: '',
     vehicle: {
@@ -64,7 +92,7 @@ const BookingForm = () => {
       hasElectricity: false,
       hasCoveredArea: false
     },
-    issues: [] as string[]
+    issues: []
   });
   
   const [currentStep, setCurrentStep] = useState(1);
@@ -77,13 +105,23 @@ const BookingForm = () => {
     
     if (name.includes('.')) {
       const [parent, child] = name.split('.');
-      setFormData(prev => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent as keyof typeof prev],
-          [child]: value
-        }
-      }));
+      if (parent === 'vehicle') {
+        setFormData(prev => ({
+          ...prev,
+          vehicle: {
+            ...prev.vehicle,
+            [child]: value
+          }
+        }));
+      } else if (parent === 'utilities') {
+        setFormData(prev => ({
+          ...prev,
+          utilities: {
+            ...prev.utilities,
+            [child]: value === 'on'
+          }
+        }));
+      }
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
@@ -94,13 +132,15 @@ const BookingForm = () => {
     
     if (name.includes('.')) {
       const [parent, child] = name.split('.');
-      setFormData(prev => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent as keyof typeof prev],
-          [child]: checked
-        }
-      }));
+      if (parent === 'utilities') {
+        setFormData(prev => ({
+          ...prev,
+          utilities: {
+            ...prev.utilities,
+            [child]: checked
+          }
+        }));
+      }
     }
   };
 
@@ -588,7 +628,7 @@ const BookingForm = () => {
           <div className="p-6 space-y-4">
             <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
               <p className="text-lg">Your appointment details:</p>
-              <p className="font-medium">{format(formData.date || new Date(), "PPP")} at {formData.time}</p>
+              <p className="font-medium">{formData.date ? format(formData.date, "PPP") : ''} at {formData.time}</p>
               <p>Service: {services.find(s => s.id === formData.service)?.name}</p>
               <p>{formData.vehicle.make} {formData.vehicle.model} ({formData.vehicle.year})</p>
             </div>
