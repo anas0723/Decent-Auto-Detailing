@@ -142,7 +142,7 @@ const services = {
       },
       {
         name: 'Jessica M.',
-        quote: 'Worth every penny! My car's paint has never looked this good, and it's so much easier to keep clean now.',
+        quote: "Worth every penny! My car's paint has never looked this good, and it's so much easier to keep clean now.",
         rating: 5
       }
     ]
