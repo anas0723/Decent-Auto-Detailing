@@ -1,5 +1,6 @@
+"use client";
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -43,16 +44,16 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-skyblue transition-colors">Home</Link>
+                <Link href="/" className="text-gray-400 hover:text-skyblue transition-colors">Home</Link>
               </li>
               <li>
-                <Link to="/booking" className="text-gray-400 hover:text-skyblue transition-colors">Book Now</Link>
+                <Link href="/booking" className="text-gray-400 hover:text-skyblue transition-colors">Book Now</Link>
               </li>
               <li>
-                <Link to="/gallery" className="text-gray-400 hover:text-skyblue transition-colors">Gallery</Link>
+                <Link href="/gallery" className="text-gray-400 hover:text-skyblue transition-colors">Gallery</Link>
               </li>
               <li>
-                <Link to="/contact" className="text-gray-400 hover:text-skyblue transition-colors">Contact Us</Link>
+                <Link href="/contact" className="text-gray-400 hover:text-skyblue transition-colors">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -61,13 +62,19 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link to="/services/mobile-detailing" className="text-gray-400 hover:text-skyblue transition-colors">Mobile Car Detailing</Link>
+                <Link href="/services/mobile-detailing" className="text-gray-400 hover:text-skyblue transition-colors">Mobile Car Detailing</Link>
               </li>
               <li>
-                <Link to="/services/window-tint" className="text-gray-400 hover:text-skyblue transition-colors">Window Tinting</Link>
+                <Link href="/services/window-tint" className="text-gray-400 hover:text-skyblue transition-colors">Window Tinting</Link>
               </li>
               <li>
-                <Link to="/services/ceramic-coating" className="text-gray-400 hover:text-skyblue transition-colors">Ceramic Coating</Link>
+                <Link href="/services/ceramic-coating" className="text-gray-400 hover:text-skyblue transition-colors">Ceramic Coating</Link>
+              </li>
+              <li>
+                <Link href="/services/paint-correction" className="text-gray-400 hover:text-skyblue transition-colors">Paint Correction</Link>
+              </li>
+              <li>
+                <Link href="/services/interior-detailing" className="text-gray-400 hover:text-skyblue transition-colors">Interior Detailing</Link>
               </li>
             </ul>
           </div>
@@ -105,10 +112,10 @@ const Footer = () => {
             &copy; {currentYear} Decent Auto Detailing. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <Link to="/" className="text-gray-500 text-sm hover:text-skyblue transition-colors">
+            <Link href="/" className="text-gray-500 text-sm hover:text-skyblue transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/" className="text-gray-500 text-sm hover:text-skyblue transition-colors">
+            <Link href="/" className="text-gray-500 text-sm hover:text-skyblue transition-colors">
               Terms of Service
             </Link>
           </div>

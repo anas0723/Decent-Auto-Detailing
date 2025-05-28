@@ -1,13 +1,11 @@
-
 import type { Config } from "tailwindcss";
 
-export default {
+const config: Config = {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	prefix: "",
 	theme: {
@@ -57,8 +55,8 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				skyblue: '#33C3F0',
-				darkblack: '#000000e6',
+				skyblue: "#0ea5e9",
+				darkblack: "#1a1a1a",
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -86,12 +84,13 @@ export default {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' },
 				},
-				shine: {
-					'100%': { left: '125%' },
-				},
 				fadeIn: {
-					'0%': { opacity: '0', transform: 'translateY(20px)' },
-					'100%': { opacity: '1', transform: 'translateY(0)' },
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
+				},
+				shine: {
+					'0%': { backgroundPosition: '200% center' },
+					'100%': { backgroundPosition: '-200% center' },
 				},
 			},
 			animation: {
@@ -99,9 +98,15 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 6s ease-in-out infinite',
 				'shine': 'shine 1.5s',
-				'fade-in': 'fadeIn 0.8s ease-out forwards',
+				'fade-in': 'fadeIn 0.3s ease-in-out',
+				'shine-effect': 'shine 1.5s ease-in-out infinite',
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		require("@tailwindcss/typography"),
+	],
 } satisfies Config;
+
+export default config;

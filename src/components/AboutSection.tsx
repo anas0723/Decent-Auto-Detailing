@@ -1,5 +1,8 @@
+"use client";
 
+import React from 'react';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -32,9 +35,11 @@ const AboutSection = () => {
             <div className="relative">
               <div className="absolute -top-4 -left-4 w-24 h-24 lg:w-32 lg:h-32 bg-skyblue/20 rounded-full z-0"></div>
               <div className="absolute -bottom-4 -right-4 w-32 h-32 lg:w-40 lg:h-40 bg-skyblue/10 rounded-full z-0"></div>
-              <img 
+              <Image 
                 src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
                 alt="Car detailing professional" 
+                width={800}
+                height={600}
                 className="rounded-xl shadow-xl relative z-10 fade-in"
               />
             </div>

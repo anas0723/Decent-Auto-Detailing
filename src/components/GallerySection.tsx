@@ -1,6 +1,9 @@
+"use client";
 
-import { Link } from 'react-router-dom';
+import React from 'react';
+import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const galleryImages = [
   {
@@ -59,18 +62,21 @@ const GallerySection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {galleryImages.map((image, index) => (
             <div 
               key={image.id} 
               className="relative overflow-hidden rounded-xl shadow-md group fade-in"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <img 
-                src={image.src} 
-                alt={image.alt} 
-                className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
+              <div className="relative h-64">
+                <Image 
+                  src={image.src} 
+                  alt={image.alt} 
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
               <div className="absolute inset-0 bg-darkblack bg-opacity-0 flex items-center justify-center transition-all duration-300 group-hover:bg-opacity-50">
                 <div className="opacity-0 transform translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
                   <span className="text-white font-medium px-4 py-2 rounded-full border border-white">
@@ -84,7 +90,7 @@ const GallerySection = () => {
 
         <div className="text-center mt-10">
           <Link 
-            to="/gallery"
+            href="/gallery"
             className="text-skyblue border-2 border-skyblue px-8 py-3 rounded-full inline-block font-medium hover:bg-skyblue hover:text-white transition-colors fade-in"
           >
             View Full Gallery

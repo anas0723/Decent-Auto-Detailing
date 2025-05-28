@@ -1,4 +1,6 @@
+"use client";
 
+import React from 'react';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
@@ -19,7 +21,7 @@ import {
   DialogDescription,
   DialogFooter
 } from "@/components/ui/dialog";
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const services = [
   { id: 'basic-wash', name: 'Basic Wash & Vacuum', price: '$49.99' },
@@ -220,6 +222,12 @@ const BookingForm = () => {
     if (step < currentStep) return "bg-green-500";
     if (step === currentStep) return "bg-green-500";
     return "bg-gray-300";
+  };
+
+  const handleDialogChange = (open: boolean) => {
+    if (!open) {
+      closeConfirmation();
+    }
   };
 
   return (
@@ -616,34 +624,35 @@ const BookingForm = () => {
         </form>
       </div>
       
-      {/* Confirmation Modal */}
-      <Dialog open={showConfirmation} onOpenChange={closeConfirmation}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-center text-2xl">Booking Confirmed!</DialogTitle>
-            <DialogDescription className="text-center">
-              Thank you for booking with Decent Auto Detailing.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="p-6 space-y-4">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-              <p className="text-lg">Your appointment details:</p>
-              <p className="font-medium">{formData.date ? format(formData.date, "PPP") : ''} at {formData.time}</p>
-              <p>Service: {services.find(s => s.id === formData.service)?.name}</p>
-              <p>{formData.vehicle.make} {formData.vehicle.model} ({formData.vehicle.year})</p>
+      {showConfirmation && (
+        <Dialog open={showConfirmation} onOpenChange={closeConfirmation}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-center text-2xl">Booking Confirmed!</DialogTitle>
+              <DialogDescription className="text-center">
+                Thank you for booking with Decent Auto Detailing.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="p-6 space-y-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                <p className="text-lg">Your appointment details:</p>
+                <p className="font-medium">{formData.date ? format(formData.date, "PPP") : ''} at {formData.time}</p>
+                <p>Service: {services.find(s => s.id === formData.service)?.name}</p>
+                <p>{formData.vehicle.make} {formData.vehicle.model} ({formData.vehicle.year})</p>
+              </div>
+              <p className="text-center text-gray-600">
+                We've sent a confirmation email to <span className="font-medium">{formData.email}</span>.<br/>
+                Our team will contact you soon to confirm all details.
+              </p>
             </div>
-            <p className="text-center text-gray-600">
-              We've sent a confirmation email to <span className="font-medium">{formData.email}</span>.<br/>
-              Our team will contact you soon to confirm all details.
-            </p>
-          </div>
-          <DialogFooter className="sm:justify-center">
-            <Link to="/">
-              <Button className="bg-skyblue hover:bg-blue-500">Return to Home</Button>
-            </Link>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+            <DialogFooter className="sm:justify-center">
+              <Link href="/">
+                <Button className="bg-skyblue hover:bg-blue-500">Return to Home</Button>
+              </Link>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 };

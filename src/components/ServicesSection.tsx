@@ -1,6 +1,9 @@
+"use client";
 
-import { Link } from 'react-router-dom';
+import React from 'react';
+import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const services = [
   {
@@ -60,7 +63,7 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div 
               key={service.id} 
@@ -68,17 +71,18 @@ const ServicesSection = () => {
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="relative h-56 overflow-hidden">
-                <img 
+                <Image 
                   src={service.image} 
                   alt={service.title} 
-                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                  fill
+                  className="object-cover transition-transform hover:scale-105"
                 />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2">{service.title}</h3>
                 <p className="text-gray-600 mb-4">{service.description}</p>
                 <Link 
-                  to={service.link}
+                  href={service.link}
                   className="text-skyblue font-medium flex items-center hover:text-blue-700 transition-colors"
                 >
                   Learn More
@@ -93,7 +97,7 @@ const ServicesSection = () => {
 
         <div className="text-center mt-12">
           <Link 
-            to="/booking"
+            href="/booking"
             className="bg-skyblue text-white px-8 py-3 rounded-full inline-block font-medium hover:bg-blue-500 transition-all transform hover:-translate-y-1 shadow-md hover:shadow-lg fade-in shine-effect"
           >
             Book A Service Now

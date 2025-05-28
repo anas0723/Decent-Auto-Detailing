@@ -1,6 +1,8 @@
+"use client";
 
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -149,9 +151,12 @@ const services = {
   }
 };
 
-const Service = () => {
-  const { serviceId } = useParams<{ serviceId: keyof typeof services }>();
-  const service = serviceId && services[serviceId] ? services[serviceId] : null;
+interface ServiceProps {
+  serviceId: string;
+}
+
+const Service = ({ serviceId }: ServiceProps) => {
+  const service = serviceId && services[serviceId as keyof typeof services] ? services[serviceId as keyof typeof services] : null;
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -182,7 +187,7 @@ const Service = () => {
         <div className="container mx-auto px-4 py-20">
           <h1 className="text-3xl font-bold mb-4">Service Not Found</h1>
           <p>The service you're looking for doesn't exist.</p>
-          <Link to="/" className="text-skyblue hover:underline">Return to Home</Link>
+          <Link href="/" className="text-skyblue hover:underline">Return to Home</Link>
         </div>
         <Footer />
       </div>
@@ -196,10 +201,12 @@ const Service = () => {
       <div className="pt-16">
         {/* Hero Banner */}
         <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
-          <img 
+          <Image 
             src={service.image} 
-            alt={service.title} 
-            className="w-full h-full object-cover"
+            alt={service.title}
+            fill
+            className="object-cover"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-darkblack/60 to-transparent flex items-center">
             <div className="container mx-auto px-4">
@@ -222,25 +229,27 @@ const Service = () => {
                   <div key={index} className="fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div>
-                        <div className="aspect-video overflow-hidden rounded-lg shadow-lg">
-                          <img 
+                        <div className="aspect-video overflow-hidden rounded-lg shadow-lg relative">
+                          <Image 
                             src={item.before} 
                             alt={`Before ${item.caption}`}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                           />
-                          <div className="bg-darkblack text-white px-4 py-2">
+                          <div className="absolute bottom-0 left-0 right-0 bg-darkblack text-white px-4 py-2">
                             <span>Before</span>
                           </div>
                         </div>
                       </div>
                       <div>
-                        <div className="aspect-video overflow-hidden rounded-lg shadow-lg">
-                          <img 
+                        <div className="aspect-video overflow-hidden rounded-lg shadow-lg relative">
+                          <Image 
                             src={item.after} 
                             alt={`After ${item.caption}`}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
                           />
-                          <div className="bg-skyblue text-white px-4 py-2">
+                          <div className="absolute bottom-0 left-0 right-0 bg-skyblue text-white px-4 py-2">
                             <span>After</span>
                           </div>
                         </div>
@@ -254,40 +263,24 @@ const Service = () => {
             
             {/* Testimonials */}
             <div className="mt-16">
-              <h2 className="text-3xl font-bold mb-8 fade-in">What Our Customers Say</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h2 className="text-3xl font-bold mb-8 fade-in">Customer Testimonials</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {service.testimonials.map((testimonial, index) => (
-                  <div 
-                    key={index} 
-                    className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-skyblue fade-in"
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                  >
-                    <div className="flex mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
+                  <div key={index} className="bg-white p-6 rounded-lg shadow-lg fade-in" style={{ animationDelay: `${index * 0.2}s` }}>
+                    <div className="flex items-center mb-4">
+                      <div className="text-yellow-400 flex">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <svg key={i} className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
                     </div>
-                    <p className="text-gray-600 italic mb-4">"{testimonial.quote}"</p>
+                    <p className="text-gray-600 mb-4">{testimonial.quote}</p>
                     <p className="font-semibold">{testimonial.name}</p>
                   </div>
                 ))}
               </div>
-            </div>
-            
-            {/* CTA */}
-            <div className="mt-16 bg-gray-50 rounded-2xl p-8 text-center fade-in">
-              <h2 className="text-2xl font-bold mb-4">Ready to Transform Your Vehicle?</h2>
-              <p className="text-gray-600 mb-6">
-                Book your appointment today and experience the Decent Auto Detailing difference.
-              </p>
-              <Link
-                to="/booking"
-                className="bg-skyblue text-white px-8 py-3 rounded-full inline-block font-medium hover:bg-blue-500 transition-colors shine-effect"
-              >
-                Book This Service
-              </Link>
             </div>
           </div>
         </div>
