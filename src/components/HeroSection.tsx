@@ -9,35 +9,7 @@ const HeroSection = () => {
   
   useEffect(() => {
     const createBubble = () => {
-      if (heroRef.current) {
-        const bubble = document.createElement('div');
-        bubble.classList.add('bubble');
-        
-        // Random position, size and animation duration
-        const size = Math.random() * 60 + 10;
-        const left = Math.random() * 100;
-        const animationDuration = Math.random() * 8 + 4;
-        
-        bubble.style.width = `${size}px`;
-        bubble.style.height = `${size}px`;
-        bubble.style.left = `${left}%`;
-        bubble.style.animationDuration = `${animationDuration}s`;
-        bubble.style.animationDelay = `${Math.random() * 2}s`;
-        
-        // Add will-change for better performance
-        bubble.style.willChange = 'transform, opacity';
-        
-        heroRef.current.appendChild(bubble);
-        
-        // Remove bubble after animation completes
-        setTimeout(() => {
-          if (bubble.parentNode === heroRef.current) {
-            if (heroRef.current) {
-              heroRef.current.removeChild(bubble);
-            }
-          }
-        }, animationDuration * 1000);
-      }
+      
     };
     
     // Create bubbles at intervals
