@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+# Booking System with Calendar
 
-## Project info
+A modern, fully responsive online booking system for service-based businesses. This project features a multi-step booking form, calendar date selection, and a beautiful user interface built with Next.js, TypeScript, Tailwind CSS, and shadcn-ui.
 
-**URL**: https://lovable.dev/projects/4ed2cc8e-5d66-4098-8ff8-08c56e4b5da5
+---
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+- 📅 **Multi-step Booking Form**: Collects service, date, time, customer, and vehicle details
+- 🗓️ **Calendar Integration**: Users can select available dates and times for appointments
+- 🚗 **Vehicle & Service Selection**: Supports multiple vehicle types and services
+- 📝 **Special Instructions & Issues**: Customers can add notes and specify vehicle issues
+- 📱 **Fully Responsive**: Works perfectly on mobile, tablet, and desktop
+- 💎 **Modern UI**: Built with shadcn-ui and Tailwind CSS for a clean, professional look
+- 🔔 **Booking Confirmation**: Users receive a confirmation after booking
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4ed2cc8e-5d66-4098-8ff8-08c56e4b5da5) and start prompting.
+## 🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+1. **Clone the repository**
+   ```sh
+   git clone <YOUR_GIT_URL>
+   cd <YOUR_PROJECT_NAME>
+   ```
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
+3. **Run the development server**
+   ```sh
+   npm run dev
+   ```
+4. **Open your browser**
+   Visit `http://localhost:3000` to view the booking system.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🛠️ Technologies Used
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
+- Next.js (App Router)
 - TypeScript
 - React
-- shadcn-ui
 - Tailwind CSS
+- shadcn-ui
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/4ed2cc8e-5d66-4098-8ff8-08c56e4b5da5) and click on Share -> Publish.
+## 📋 Booking Flow
 
-## Can I connect a custom domain to my Lovable project?
+1. **Select Service & Vehicle Type**
+2. **Choose Date & Time (Calendar)**
+3. **Enter Personal & Vehicle Details**
+4. **Add Special Instructions or Issues (optional)**
+5. **Review & Confirm Booking**
+6. **Receive Confirmation**
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📦 Project Structure
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- `src/components/BookingForm.tsx` – Main multi-step booking form
+- `src/components/ui/calendar.tsx` – Calendar component for date selection
+- `src/pages/Booking.tsx` – Booking page entry point
+- `src/app/booking/page.tsx` – Next.js app route for booking
+
+---
+
+## 🚧 Needs & Work Required
+
+- **Backend Integration**: Store bookings in a database, send confirmation emails/SMS
+- **Admin Dashboard**: Manage and view bookings
+- **Promo Code Support**: Allow users to enter and validate promo codes
+- **Payment Integration**: Accept online payments (Stripe, PayPal, etc.)
+- **Notifications**: Email/SMS reminders and confirmations
+- **Accessibility & SEO**: Improve ARIA, meta tags, and structured data
+- **Testing**: Add unit and integration tests
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 📄 License
+
+[MIT](LICENSE)
