@@ -71,7 +71,6 @@ A modern, fully responsive online booking system for service-based businesses. T
 - **Backend Integration**: Store bookings in a database, send confirmation emails/SMS
 - **Admin Dashboard**: Manage and view bookings
 - **Promo Code Support**: Allow users to enter and validate promo codes
-- **Payment Integration**: Accept online payments (Stripe, PayPal, etc.)
 - **Notifications**: Email/SMS reminders and confirmations
 - **Accessibility & SEO**: Improve ARIA, meta tags, and structured data
 - **Testing**: Add unit and integration tests
