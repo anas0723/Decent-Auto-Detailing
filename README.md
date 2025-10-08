@@ -18,7 +18,7 @@ A modern, fully responsive online booking system for service-based businesses. T
 
 ## 🚀 Getting Started
 
-1. **Clone the repository**
+1. **Clone the repository** yeah that is not
    ```sh
    git clone https://github.com/anas0723/Decent-Auto-Detailing.git
    cd Your Folder
