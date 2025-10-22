@@ -82,7 +82,7 @@ A modern, fully responsive online booking system for service-based businesses. T
 
 ---
 
-Careently stop working
+okay all goood
 
 ## 📄 License
 
